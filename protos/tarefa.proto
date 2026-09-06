@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package tarefa;
+
+service TarefaService {
+    rpc CreateTarefa (CreateTarefaRequest) returns (TarefaResponse);
+    rpc ListTarefas (Empty) returns (ListTarefasResponse);
+}
+
+message Empty {}
+
+message Tarefa {
+    string id = 1;
+    string title = 2;
+    bool completed = 3;
+
+}
+
+message CreateTarefaRequest {
+    string title = 1;
+}
+
+message TarefaRequest {
+    string id = 1;
+}
+
+message TarefaResponse {
+    Tarefa tarefa = 1;
+}
+
+message ListTarefasResponse {
+    repeated Tarefa tarefas = 1;
+}
