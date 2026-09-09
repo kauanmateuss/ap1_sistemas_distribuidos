@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ctarefa.proto\x12\x06tarefa\"\x07\n\x05\x45mpty\"6\n\x06Tarefa\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\"$\n\x13\x43reateTarefaRequest\x12\r\n\x05title\x18\x01 \x01(\t\"\x1b\n\rTarefaRequest\x12\n\n\x02id\x18\x01 \x01(\t\"0\n\x0eTarefaResponse\x12\x1e\n\x06tarefa\x18\x01 \x01(\x0b\x32\x0e.tarefa.Tarefa\"6\n\x13ListTarefasResponse\x12\x1f\n\x07tarefas\x18\x01 \x03(\x0b\x32\x0e.tarefa.Tarefa2\x8f\x01\n\rTarefaService\x12\x43\n\x0c\x43reateTarefa\x12\x1b.tarefa.CreateTarefaRequest\x1a\x16.tarefa.TarefaResponse\x12\x39\n\x0bListTarefas\x12\r.tarefa.Empty\x1a\x1b.tarefa.ListTarefasResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ctarefa.proto\x12\x06tarefa\"\x07\n\x05\x45mpty\"6\n\x06Tarefa\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\"$\n\x13\x43reateTarefaRequest\x12\r\n\x05title\x18\x01 \x01(\t\"\x1b\n\rTarefaRequest\x12\n\n\x02id\x18\x01 \x01(\t\"0\n\x0eTarefaResponse\x12\x1e\n\x06tarefa\x18\x01 \x01(\x0b\x32\x0e.tarefa.Tarefa\"6\n\x13ListTarefasResponse\x12\x1f\n\x07tarefas\x18\x01 \x03(\x0b\x32\x0e.tarefa.Tarefa\"C\n\x13UpdateTarefaRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\"\'\n\x14\x44\x65leteTarefaResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x99\x02\n\rTarefaService\x12\x43\n\x0c\x43reateTarefa\x12\x1b.tarefa.CreateTarefaRequest\x1a\x16.tarefa.TarefaResponse\x12\x39\n\x0bListTarefas\x12\r.tarefa.Empty\x1a\x1b.tarefa.ListTarefasResponse\x12\x43\n\x0cUpdateTarefa\x12\x1b.tarefa.UpdateTarefaRequest\x1a\x16.tarefa.TarefaResponse\x12\x43\n\x0c\x44\x65leteTarefa\x12\x15.tarefa.TarefaRequest\x1a\x1c.tarefa.DeleteTarefaResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -43,6 +43,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TAREFARESPONSE']._serialized_end=204
   _globals['_LISTTAREFASRESPONSE']._serialized_start=206
   _globals['_LISTTAREFASRESPONSE']._serialized_end=260
-  _globals['_TAREFASERVICE']._serialized_start=263
-  _globals['_TAREFASERVICE']._serialized_end=406
+  _globals['_UPDATETAREFAREQUEST']._serialized_start=262
+  _globals['_UPDATETAREFAREQUEST']._serialized_end=329
+  _globals['_DELETETAREFARESPONSE']._serialized_start=331
+  _globals['_DELETETAREFARESPONSE']._serialized_end=370
+  _globals['_TAREFASERVICE']._serialized_start=373
+  _globals['_TAREFASERVICE']._serialized_end=654
 # @@protoc_insertion_point(module_scope)

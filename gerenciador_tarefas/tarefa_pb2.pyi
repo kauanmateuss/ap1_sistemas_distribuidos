@@ -43,3 +43,19 @@ class ListTarefasResponse(_message.Message):
     TAREFAS_FIELD_NUMBER: _ClassVar[int]
     tarefas: _containers.RepeatedCompositeFieldContainer[Tarefa]
     def __init__(self, tarefas: _Optional[_Iterable[_Union[Tarefa, _Mapping]]] = ...) -> None: ...
+
+class UpdateTarefaRequest(_message.Message):
+    __slots__ = ("id", "title", "completed")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    COMPLETED_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    title: str
+    completed: bool
+    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
+
+class DeleteTarefaResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: _Optional[bool] = ...) -> None: ...

@@ -1,10 +1,12 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
 package tarefa;
 
 service TarefaService {
     rpc CreateTarefa (CreateTarefaRequest) returns (TarefaResponse);
     rpc ListTarefas (Empty) returns (ListTarefasResponse);
+    rpc UpdateTarefa (UpdateTarefaRequest) returns (TarefaResponse);
+    rpc DeleteTarefa (TarefaRequest) returns (DeleteTarefaResponse);
 }
 
 message Empty {}
@@ -30,4 +32,14 @@ message TarefaResponse {
 
 message ListTarefasResponse {
     repeated Tarefa tarefas = 1;
+}
+
+message UpdateTarefaRequest {
+    string id = 1;
+    string title = 2;
+    bool completed = 3;
+}
+
+message DeleteTarefaResponse {
+    bool success = 1;
 }
