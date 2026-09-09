@@ -58,7 +58,7 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
         )
 
         # retornando a resposta com a tarefa criada
-        return tarefa_pb2.TarefaResponse(tarefa=tarefa) 
+        return tarefa_pb2.TarefaResponse(tarefa=tarefa)
 
     # metodo para listar as tarefas cadastradas no banco de dados
     def ListTarefas(self, request, context):
@@ -83,6 +83,41 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
         ]
 
         return tarefa_pb2.ListTarefasResponse(tarefas=tarefas)
+
+    # metodo para atualizar uma tarefa cadastrada no banco de dados
+    def UpdateTarefa(self, request, context):
+        # abrindo conexao com o banco para atualizar os dados da tarefa
+        with get_connection() as connection:
+            connection.execute(
+                """
+                UPDATE tarefas
+                SET title = ?, completed = ?
+                WHERE id = ?
+                """,
+                (request.title, request.completed, request.id),
+            )
+
+        # criando a resposta com a tarefa atualizada
+        tarefa = tarefa_pb2.Tarefa(
+            id=request.id,
+            title=request.title,
+            completed=request.completed
+        )
+
+        # retornando a resposta com a tarefa atualizada
+        return tarefa_pb2.TarefaResponse(tarefa=tarefa)
+
+    # metodo para deletar uma tarefa cadastrada no banco de dados
+    def DeleteTarefa(self, request, context):
+        # abrindo conexao com o banco para remover a tarefa pelo id
+        with get_connection() as connection:
+            connection.execute(
+                "DELETE FROM tarefas WHERE id = ?",
+                (request.id,),
+            )
+
+        # retornando a resposta confirmando a delecao
+        return tarefa_pb2.DeleteTarefaResponse(success=True)
 
 # Funcao para iniciar o servidor gRPC
 def serve():

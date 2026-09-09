@@ -44,6 +44,16 @@ class TarefaServiceStub:
                 request_serializer=tarefa__pb2.Empty.SerializeToString,
                 response_deserializer=tarefa__pb2.ListTarefasResponse.FromString,
                 _registered_method=True)
+        self.UpdateTarefa = channel.unary_unary(
+                '/tarefa.TarefaService/UpdateTarefa',
+                request_serializer=tarefa__pb2.UpdateTarefaRequest.SerializeToString,
+                response_deserializer=tarefa__pb2.TarefaResponse.FromString,
+                _registered_method=True)
+        self.DeleteTarefa = channel.unary_unary(
+                '/tarefa.TarefaService/DeleteTarefa',
+                request_serializer=tarefa__pb2.TarefaRequest.SerializeToString,
+                response_deserializer=tarefa__pb2.DeleteTarefaResponse.FromString,
+                _registered_method=True)
 
 
 class TarefaServiceServicer:
@@ -61,6 +71,18 @@ class TarefaServiceServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateTarefa(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTarefa(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TarefaServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +95,16 @@ def add_TarefaServiceServicer_to_server(servicer, server):
                     servicer.ListTarefas,
                     request_deserializer=tarefa__pb2.Empty.FromString,
                     response_serializer=tarefa__pb2.ListTarefasResponse.SerializeToString,
+            ),
+            'UpdateTarefa': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateTarefa,
+                    request_deserializer=tarefa__pb2.UpdateTarefaRequest.FromString,
+                    response_serializer=tarefa__pb2.TarefaResponse.SerializeToString,
+            ),
+            'DeleteTarefa': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTarefa,
+                    request_deserializer=tarefa__pb2.TarefaRequest.FromString,
+                    response_serializer=tarefa__pb2.DeleteTarefaResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +161,60 @@ class TarefaService:
             '/tarefa.TarefaService/ListTarefas',
             tarefa__pb2.Empty.SerializeToString,
             tarefa__pb2.ListTarefasResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateTarefa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tarefa.TarefaService/UpdateTarefa',
+            tarefa__pb2.UpdateTarefaRequest.SerializeToString,
+            tarefa__pb2.TarefaResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTarefa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tarefa.TarefaService/DeleteTarefa',
+            tarefa__pb2.TarefaRequest.SerializeToString,
+            tarefa__pb2.DeleteTarefaResponse.FromString,
             options,
             channel_credentials,
             insecure,

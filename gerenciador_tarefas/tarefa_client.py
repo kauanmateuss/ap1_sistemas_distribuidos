@@ -8,6 +8,8 @@ def mostrar_menu():
     print("\n===== GERENCIADOR DE TAREFAS ====== ")   # Se tiverem um nome mais criativo
     print("1 - LISTAR TAREFAS")
     print("2 - CRIAR TAREFA")
+    print("3 - ATUALIZAR TAREFA")
+    print("4 - DELETAR TAREFA")
     print("0 - SAIR")
     print("=====================================\n")
 
@@ -49,6 +51,24 @@ def run():
             # chamando o metodo para criar a tarefa com o titulo informado
             response = stub.CreateTarefa(tarefa_pb2.CreateTarefaRequest(title=titulo))
             print(f"Tarefa criada! ID: {response.tarefa.id} - '{response.tarefa.title}'")
+
+        elif opcao == "3":
+            # Atualizando uma tarefa cadastrada
+            tarefa_id = input("DIGITE O ID DA TAREFA: ").strip()
+            titulo = input("NOVO TITULO: ").strip()
+            concluida = input("CONCLUIDA? (s/n): ").strip().lower() == "s"
+
+            # chamando o metodo para atualizar a tarefa informada
+            response = stub.UpdateTarefa(tarefa_pb2.UpdateTarefaRequest(id=tarefa_id, title=titulo, completed=concluida))
+            print(f"Tarefa atualizada! ID: {response.tarefa.id} - '{response.tarefa.title}'")
+
+        elif opcao == "4":
+            # Deletando uma tarefa cadastrada
+            tarefa_id = input("DIGITE O ID DA TAREFA A DELETAR: ").strip()
+
+            # chamando o metodo para deletar a tarefa informada
+            response = stub.DeleteTarefa(tarefa_pb2.TarefaRequest(id=tarefa_id))
+            print("TAREFA DELETADA COM SUCESSO.")
 
         elif opcao == "0":
             print("ENCERRANDO...")
