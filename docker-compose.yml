@@ -1,0 +1,43 @@
+services:
+  servidor:
+    build: .
+    container_name: servidor_tarefas
+    command: python tarefa_server.py
+    networks:
+      rede_tarefas:
+        ipv4_address: 172.28.0.10
+
+  cliente1:
+    build: .
+    container_name: cliente1_tarefas
+    command: python tarefa_client.py
+    environment:
+      - SERVER_ADDRESS=172.28.0.10:80052
+    networks:
+      rede_tarefas:
+        ipv4_address: 172.28.0.11
+    stdin_open: true
+    tty: true
+    depends_on:
+      - servidor
+
+  cliente2:
+    build: .
+    container_name: cliente2_tarefas
+    command: python tarefa_client.py
+    environment:
+      - SERVER_ADDRESS=172.28.0.10:80052
+    networks:
+      rede_tarefas:
+        ipv4_address: 172.28.0.12
+    stdin_open: true
+    tty: true
+    depends_on:
+      - servidor
+
+networks:
+  rede_tarefas:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

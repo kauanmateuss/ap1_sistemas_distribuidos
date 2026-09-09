@@ -1,3 +1,4 @@
+import os
 import sys
 import grpc
 
@@ -17,7 +18,8 @@ def mostrar_menu():
 def run():
 
     # Criando o canal de comunicacao e o stub para interagir com o servidor
-    channel = grpc.insecure_channel("localhost:80052")
+    server_address = os.environ.get("SERVER_ADDRESS", "localhost:80052")
+    channel = grpc.insecure_channel(server_address)
     stub = tarefa_pb2_grpc.TarefaServiceStub(channel)
 
     # laco principal do cliente
