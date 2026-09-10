@@ -14,15 +14,12 @@ message Empty {}
 message Tarefa {
     string id = 1;
     string title = 2;
-    string descricao = 3;
-    bool completed = 4;
+    bool completed = 3;
 
 }
 
 message CreateTarefaRequest {
     string title = 1;
-    string descricao = 2;
-    bool completed = 3;
 }
 
 message TarefaRequest {
@@ -40,8 +37,7 @@ message ListTarefasResponse {
 message UpdateTarefaRequest {
     string id = 1;
     string title = 2;
-    string descricao = 3;
-    bool completed = 4;
+    bool completed = 3;
 }
 
 message DeleteTarefaResponse {
