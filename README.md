@@ -14,9 +14,9 @@ O serviço `TarefaService`, definido em `protos/tarefa.proto`, expõe as seguint
 - **DeletarTarefa** — remove uma tarefa pelo ID.
 
 ## Estrutura do projeto
-ap1_sistemas_distribuidos/
-├── protos/
-│ └── tarefa.proto # definicao do servico e das mensagens
+ap1_sistemas_distribuidos/\
+├── protos/\
+│ └── tarefa.proto # definicao do servico e das mensagens\
 ├── gerenciador_tarefas/
 │ ├── tarefa_server.py # implementacao do servidor gRPC
 │ ├── tarefa_client.py # aplicacao cliente (menu interativo)
