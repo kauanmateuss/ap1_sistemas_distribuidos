@@ -25,7 +25,7 @@ ap1_sistemas_distribuidos/\
 │ └── tarefas.db # banco sqlite (criado em tempo de execucao)\
 ├── Dockerfile\
 ├── docker-compose.yml\
-└── requirements.txt\
+└── requirements.txt
 
 ## Requisitos
 
@@ -62,7 +62,7 @@ cd gerenciador_tarefas
 python tarefa_server.py
 ```
 
-O servidor sobe na porta `80052` e exibe:
+O servidor sobe na porta `80052`.
 
 **5. Rodar o cliente** (em outro terminal, também dentro de `gerenciador_tarefas`):
 
