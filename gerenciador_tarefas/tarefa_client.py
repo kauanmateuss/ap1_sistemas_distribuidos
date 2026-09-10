@@ -72,10 +72,7 @@ def run():
 
             # chamando o metodo para deletar a tarefa informada
             response = stub.DeleteTarefa(tarefa_pb2.TarefaRequest(id=tarefa_id))
-            if response.success:
-                print("Tarefa deletada com sucesso.")
-            else:
-                print("Tarefa nao encontrada.")
+            print("TAREFA DELETADA COM SUCESSO.\n")
 
         elif opcao == "0":
             print("ENCERRANDO...")
