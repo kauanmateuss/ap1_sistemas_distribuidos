@@ -36,9 +36,17 @@ ap1_sistemas_distribuidos/\
 
 **1. Criar e ativar o ambiente virtual:**
 
+NO WINDOWS:
+
 ```powershell
 python -m venv venv
-venv\Scripts\Activate.ps1
+venv\Scripts\activate.ps1
+```
+
+NO LINUX
+```bash
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 **2. Instalar as dependências:**
