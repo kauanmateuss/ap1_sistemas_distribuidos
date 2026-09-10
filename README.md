@@ -17,15 +17,15 @@ O serviço `TarefaService`, definido em `protos/tarefa.proto`, expõe as seguint
 ap1_sistemas_distribuidos/\
 ├── protos/\
 │ └── tarefa.proto # definicao do servico e das mensagens\
-├── gerenciador_tarefas/
-│ ├── tarefa_server.py # implementacao do servidor gRPC
-│ ├── tarefa_client.py # aplicacao cliente (menu interativo)
-│ ├── tarefa_pb2.py # codigo gerado (mensagens)
-│ ├── tarefa_pb2_grpc.py # codigo gerado (servico)
-│ └── tarefas.db # banco sqlite (criado em tempo de execucao)
-├── Dockerfile
-├── docker-compose.yml
-└── requirements.txt
+├── gerenciador_tarefas/\
+│ ├── tarefa_server.py # implementacao do servidor gRPC\
+│ ├── tarefa_client.py # aplicacao cliente (menu interativo)\
+│ ├── tarefa_pb2.py # codigo gerado (mensagens)\
+│ ├── tarefa_pb2_grpc.py # codigo gerado (servico)\
+│ └── tarefas.db # banco sqlite (criado em tempo de execucao)\
+├── Dockerfile\
+├── docker-compose.yml\
+└── requirements.txt\
 
 ## Requisitos
 
