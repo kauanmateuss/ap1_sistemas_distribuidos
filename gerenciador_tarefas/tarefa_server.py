@@ -114,15 +114,18 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
 
     # metodo para deletar uma tarefa cadastrada no banco de dados
     def DeleteTarefa(self, request, context):
-        # abrindo conexao com o banco para remover a tarefa pelo id
+
         with get_connection() as connection:
-            connection.execute(
+        #salvando o resultado da execução do comando DELETE para verificar se alguma linha foi afetada
+            resultado = connection.execute(
                 "DELETE FROM tarefas WHERE id = ?",
                 (request.id,),
             )
 
-        # retornando a resposta confirmando a delecao
-        return tarefa_pb2.DeleteTarefaResponse(success=True)
+            # verificando se alguma tarefa foi removida
+            sucesso = resultado.rowcount > 0
+
+        return tarefa_pb2.DeleteTarefaResponse(success=sucesso)
 
 # Funcao para iniciar o servidor gRPC
 def serve():
