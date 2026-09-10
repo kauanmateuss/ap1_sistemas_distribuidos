@@ -11,20 +11,26 @@ class Empty(_message.Message):
     def __init__(self) -> None: ...
 
 class Tarefa(_message.Message):
-    __slots__ = ("id", "title", "completed")
+    __slots__ = ("id", "title", "descricao", "completed")
     ID_FIELD_NUMBER: _ClassVar[int]
     TITLE_FIELD_NUMBER: _ClassVar[int]
+    DESCRICAO_FIELD_NUMBER: _ClassVar[int]
     COMPLETED_FIELD_NUMBER: _ClassVar[int]
     id: str
     title: str
+    descricao: str
     completed: bool
-    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., descricao: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
 
 class CreateTarefaRequest(_message.Message):
-    __slots__ = ("title",)
+    __slots__ = ("title", "descricao", "completed")
     TITLE_FIELD_NUMBER: _ClassVar[int]
+    DESCRICAO_FIELD_NUMBER: _ClassVar[int]
+    COMPLETED_FIELD_NUMBER: _ClassVar[int]
     title: str
-    def __init__(self, title: _Optional[str] = ...) -> None: ...
+    descricao: str
+    completed: bool
+    def __init__(self, title: _Optional[str] = ..., descricao: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
 
 class TarefaRequest(_message.Message):
     __slots__ = ("id",)
@@ -45,14 +51,16 @@ class ListTarefasResponse(_message.Message):
     def __init__(self, tarefas: _Optional[_Iterable[_Union[Tarefa, _Mapping]]] = ...) -> None: ...
 
 class UpdateTarefaRequest(_message.Message):
-    __slots__ = ("id", "title", "completed")
+    __slots__ = ("id", "title", "descricao", "completed")
     ID_FIELD_NUMBER: _ClassVar[int]
     TITLE_FIELD_NUMBER: _ClassVar[int]
+    DESCRICAO_FIELD_NUMBER: _ClassVar[int]
     COMPLETED_FIELD_NUMBER: _ClassVar[int]
     id: str
     title: str
+    descricao: str
     completed: bool
-    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., title: _Optional[str] = ..., descricao: _Optional[str] = ..., completed: _Optional[bool] = ...) -> None: ...
 
 class DeleteTarefaResponse(_message.Message):
     __slots__ = ("success",)

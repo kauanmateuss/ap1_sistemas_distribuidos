@@ -28,6 +28,7 @@ def init_database():
             CREATE TABLE IF NOT EXISTS tarefas (
                 id TEXT PRIMARY KEY,
                 title TEXT NOT NULL,
+                descricao TEXT NOT NULL DEFAULT '',
                 completed INTEGER NOT NULL DEFAULT 0
             )
         """)
@@ -44,16 +45,17 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
         with get_connection() as connection:
             connection.execute(
                 """
-                INSERT INTO tarefas (id, title, completed)
-                VALUES (?, ?, ?)
+                INSERT INTO tarefas (id, title, descricao, completed)
+                VALUES (?, ?, ?, ?)
                 """,
-                (tarefa_id, request.title, 0),
+                (tarefa_id, request.title, request.descricao, 0),
             )
 
         # criando a resposta com a tarefa criada
         tarefa = tarefa_pb2.Tarefa(
             id=tarefa_id,
             title=request.title,
+            descricao=request.descricao,
             completed=False
         )
 
@@ -66,7 +68,7 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
         with get_connection() as connection:
             rows = connection.execute(
                 """
-                SELECT id, title, completed
+                SELECT id, title, descricao, completed
                 FROM tarefas
                 ORDER BY rowid
                 """
@@ -77,12 +79,14 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
             tarefa_pb2.Tarefa(
                 id=row["id"],
                 title=row["title"],
+                descricao=row["descricao"],
                 completed=bool(row["completed"]),
             )
             for row in rows
         ]
 
         return tarefa_pb2.ListTarefasResponse(tarefas=tarefas)
+
 
     # metodo para atualizar uma tarefa cadastrada no banco de dados
     def UpdateTarefa(self, request, context):
@@ -91,16 +95,17 @@ class TarefaServicer(tarefa_pb2_grpc.TarefaServiceServicer):
             connection.execute(
                 """
                 UPDATE tarefas
-                SET title = ?, completed = ?
+                SET title = ?, descricao = ?, completed = ?
                 WHERE id = ?
                 """,
-                (request.title, request.completed, request.id),
+                (request.title, request.descricao, request.completed, request.id),
             )
 
         # criando a resposta com a tarefa atualizada
         tarefa = tarefa_pb2.Tarefa(
             id=request.id,
             title=request.title,
+            descricao=request.descricao,
             completed=request.completed
         )
 

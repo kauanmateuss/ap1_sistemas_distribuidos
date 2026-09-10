@@ -34,7 +34,7 @@ def run():
 
             # se não tiver nenhuma tarefa cadastrada
             if not response.tarefas:
-                print("NENHUMA TAREFA CADASTRADA.")
+                print("NENHUMA TAREFA CADASTRADA.\n")
             else:
                 print("\nTAREFAS CADASTRADAS:\n")
                 print(response.tarefas)
@@ -44,6 +44,7 @@ def run():
         elif opcao == "2":
             # Criando uma nova tarefa
             titulo = input("DIGITE O TITULO DA TAREFA: ").strip()
+            descricao = input("DIGITE UMA DESCRICAO PARA A TAREFA: ").strip()
 
             # se o usuario nao digitou nada
             if not titulo:
@@ -51,18 +52,19 @@ def run():
                 continue
 
             # chamando o metodo para criar a tarefa com o titulo informado
-            response = stub.CreateTarefa(tarefa_pb2.CreateTarefaRequest(title=titulo))
-            print(f"Tarefa criada! ID: {response.tarefa.id} - '{response.tarefa.title}'")
+            response = stub.CreateTarefa(tarefa_pb2.CreateTarefaRequest(title=titulo, descricao=descricao, completed=False))
+            print(f"\nTAREFA CRIADA! ID: {response.tarefa.id} \nTITULO:'{response.tarefa.title}' \nDESCRICAO:'{response.tarefa.descricao}' \nCONCLUIDA: {response.tarefa.completed}\n")
 
         elif opcao == "3":
             # Atualizando uma tarefa cadastrada
             tarefa_id = input("DIGITE O ID DA TAREFA: ").strip()
             titulo = input("NOVO TITULO: ").strip()
+            descricao = input("NOVA DESCRICAO: ").strip()
             concluida = input("CONCLUIDA? (s/n): ").strip().lower() == "s"
 
             # chamando o metodo para atualizar a tarefa informada
-            response = stub.UpdateTarefa(tarefa_pb2.UpdateTarefaRequest(id=tarefa_id, title=titulo, completed=concluida))
-            print(f"Tarefa atualizada! ID: {response.tarefa.id} - '{response.tarefa.title}'")
+            response = stub.UpdateTarefa(tarefa_pb2.UpdateTarefaRequest(id=tarefa_id, title=titulo, descricao=descricao, completed=concluida))
+            print(f"\nTAREFA ATUALIZADA! ID: {response.tarefa.id} \nTITULO:'{response.tarefa.title}' \nDESCRICAO:'{response.tarefa.descricao}' \nCONCLUIDA: {response.tarefa.completed}\n")
 
         elif opcao == "4":
             # Deletando uma tarefa cadastrada
@@ -81,7 +83,7 @@ def run():
             sys.exit(0)
 
         else:
-            print("OPCAO INVALIDA. TENTE NOVAMENTE.")
+            print("OPCAO INVALIDA. TENTE NOVAMENTE.\n")
 
 
 # Rodando o cliente
